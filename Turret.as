@@ -10,10 +10,7 @@
 
 	public class Turret extends MovieClip
 	{
-		//lesson ten
-		private var range:Number;
-		private var cost:Number;
-		private var bulletHP:Number
+		public var ts:TurretSettings = new TurretSettings();
 		
 		var fireDelay:int = 0;
 		var dte:Number;
@@ -21,12 +18,8 @@
 		var currEnemy:int;
 		var e:Array;
 
-		public function Turret(r:Number, bhp:Number, c:Number)
+		public function Turret()
 		{
-			this.range = r;
-			this.bulletHP = bhp;
-			this.cost = c;
-			
 			addEventListener(Event.ENTER_FRAME, updateTurret);
 		}
 
@@ -48,12 +41,15 @@
 					 currEnemy = i;
 				 }
 			}
-			
+			if(e.length <= 0)
+			{
+				return;
+			}
 			var dx:Number = x - e[currEnemy].x;
 			var dy:Number = y - e[currEnemy].y;
 			rotation = 180 + Math.atan2(dy, dx)/Math.PI*180;
 			fireDelay--;  
-			if ((parent) != null && fireDelay < 0 && (getDistanceToEnemy(e[currEnemy])) <= range) //addes third condition
+			if ((parent) != null && fireDelay < 0 && (getDistanceToEnemy(e[currEnemy])) <= ts.range) //addes third condition
 			{
 				(parent as MovieClip).makeBullet(x, y, rotation);
 				fireDelay = 24;
@@ -76,13 +72,6 @@
 			playAreaMask.graphics.endFill();
 			return playAreaMask;
 		}
-		
-		public function getRange():Number{
-			return this.range;
-		}
-		
-		public function getCost():Number{
-			return this.cost;
-		}
+
 	}
 }

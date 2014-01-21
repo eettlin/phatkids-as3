@@ -182,10 +182,10 @@
 				return enemy;
 		}
 
-		public function addTurret(t:Turret):void
+		public function addTurret(t:Turret, cost:Number):void
 		{
-			bankValue.changeValue(-t.getCost());  //  +++++++  Change Bank value
-			range.updateRadius(t.getRange());
+			bankValue.changeValue(-cost);  //  +++++++  Change Bank value
+			range.updateRadius(t.ts.range);
 			this.addChild(range);
 			trt = t;
 			trt.x = mouseX;
@@ -240,19 +240,19 @@
 
 			ma.addTile(new Tile( new T1Icon(),
 								100,
-								function() {return new TurretOne(100, 100, 900)}));
+								function() {return new TurretOne()}));
 
 			ma.addTile(new Tile( new T2Icon(),
-								100,
-								function() {return new TurretTwo(200, 100, 100)}));
+								200,
+								function() {return new TurretTwo()}));
 
 			ma.addTile(new Tile( new T3Icon(),
-								100,
-								function() {return new TurretThree(300, 100, 100)}));
+								300,
+								function() {return new TurretThree()}));
 
 			ma.addTile(new Tile( new T4Icon(),
-								100,
-								function() {return new TurretFour(400, 100, 100)}));
+								400,
+								function() {return new TurretFour()}));
 		
 		}
 

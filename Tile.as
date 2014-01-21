@@ -29,12 +29,12 @@
 		{
 			var t:Turret = turretCreator() as Turret;
 																					//  Check to see if suficient funds to buy turret 
-			if( t != null && (t.getCost() <= (root as PhatKids).bankValue.getValue()))  // (bank value >= turret value)
+			if( t != null && (cost <= (root as PhatKids).bankValue.getValue()))  // (bank value >= turret value)
 			{
 				t.x = 200;
 				t.y = 200;
 				
-				(root as PhatKids).addTurret(t);
+				(root as PhatKids).addTurret(t,cost);
 			}else if(t != null){
 				trace("Insufficient Funds");
 			}

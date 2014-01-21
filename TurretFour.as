@@ -6,8 +6,10 @@
 	public class TurretFour extends Turret {
 		
 		
-		public function TurretFour(r:Number, bhp:Number, c:Number) {
-			super(r, bhp, c);
+		public function TurretFour() {
+			super();
+			ts.range = 250;
+			ts.bulletType = 4;
 		}
 	}
 	

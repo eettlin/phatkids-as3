@@ -6,8 +6,10 @@
 	public class TurretThree extends Turret {
 		
 		
-		public function TurretThree(r:Number, bhp:Number, c:Number) {
-			super(r, bhp, c);
+		public function TurretThree() {
+			super();
+			ts.range = 200;
+			ts.bulletType = 3;
 		}
 	}
 	
