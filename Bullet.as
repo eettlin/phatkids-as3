@@ -9,10 +9,11 @@
 		
 		
 		var speed:Number = 15;
-		var startPosition:Point = new Point();;
+		var startPosition:Point = new Point();
+		private var hitPoints:Number;
 		
 		public function Bullet() {
-			
+			this.hitPoints = 100;
 		}
 		
 		public function updateBullet():void
@@ -32,7 +33,7 @@
 		}
 		
 		public function getHPValue():Number{
-			return 50;
+			return hitPoints;
 		}
 	}
 	

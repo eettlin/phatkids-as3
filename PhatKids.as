@@ -22,7 +22,7 @@
 		var sendEnemy:Boolean = true;
 		var trt:Turret;
 		var range:Range = new Range(100);
-		var enemy:Enemy;
+
 		
 		var bankValue:PointBank = new PointBank(800);
 		var lifePoints:PointBank = new PointBank(200);
@@ -126,9 +126,28 @@
 
 
 
-		public function makeBullet(tx:int, ty:int, tr:int):void //++++++++++++++++ input parameters
+		public function makeBullet(tx:int, ty:int, tr:int, bn:int):void //++++++++++++++++ input parameters
 		{
-			var bullet:Bullet = new Bullet();
+			var bullet:Bullet = null;
+			switch(bn){
+				case 1:
+				 bullet = new BulletOne(); 
+				 break;
+				case 2:
+				 bullet = new BulletTwo(); 
+				 break;
+				case 3:
+				 bullet = new BulletThree(); 
+				 break;
+				case 4:
+				 bullet = new BulletFour(); 
+				 break;
+				default:
+				 bullet = new Bullet(); 
+				 break;
+			
+			}
+			
 			bullet.x = tx;
 			bullet.y = ty;
 			bullet.rotation = tr;
@@ -139,6 +158,7 @@
 
 		private function initEnemy():void
 		{
+			var enemy:Enemy = null;
 			if (sendEnemy == true)
 			{
 				enemy = chooseEnemy();
@@ -156,6 +176,7 @@
 		
 		public function chooseEnemy():Enemy
 		{
+				var enemy:Enemy = null;
 				var randomEnemy:int = Math.random()*4+1;
 				switch(randomEnemy)
 				{
