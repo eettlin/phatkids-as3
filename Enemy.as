@@ -9,13 +9,14 @@
 	{
 		public var lifePoints:Number;
 		public var bankPoints:Number;
-		var speed:Number = 3;
+		var speed:Number = 5;
 		var waypoints:Array;
 		var currWP:Number = 0;
 		var distWP:Number = 0;
 		var offSet:int = 100;
 		var hb:HealthBar = new HealthBar();
 		var fullHealth:Number;
+		var endTrack:Boolean = false;
 
 		public function Enemy(wp:Array, lifePoints:Number, bankPoints:Number)
 		{
@@ -45,7 +46,6 @@
 			{
 				var dx:Number = waypoints[currWP].x - x;
 				var dy:Number = waypoints[currWP].y - y;
-				
 				dx += offSet;
 				dist = Math.sqrt(dx*dx + dy*dy);
 			}
@@ -63,6 +63,11 @@
 				this.x = this.x + Math.cos(this.rotation / 180 * Math.PI) * speed;
 				this.y = this.y + Math.sin(this.rotation / 180 * Math.PI) * speed;
 				rotation  = 0;
+			}
+			if(currWP >=waypoints.length && endTrack == false)
+			{
+				(root as PhatKids).lifePoints.changeValue(-5);
+				endTrack = true;
 			}
 		}
 		

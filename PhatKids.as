@@ -1,5 +1,5 @@
 ﻿package 
-{//Lesson Ten
+{
 
 	import flash.display.MovieClip;
 	import flash.events.Event;
@@ -8,6 +8,8 @@
 	import flash.display.DisplayObject;
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
+	import fl.transitions.*;
+  	import fl.transitions.easing.*;
 
 
 	public class PhatKids extends MovieClip
@@ -18,14 +20,14 @@
 		var enemyLaunchDelay:Number = 0;
 		var maxEnemies:Number = 0;
 		var waypointObject:DisplayObject;
-		var enemyTimer:Timer = new Timer(2000,20);
+		var enemyTimer:Timer = new Timer(2000,40);
 		var sendEnemy:Boolean = true;
 		var trt:Turret;
 		var range:Range = new Range(100);
 
 		
 		var bankValue:PointBank = new PointBank(800);
-		var lifePoints:PointBank = new PointBank(200);
+		public var lifePoints:PointBank = new PointBank(200);
 		//Arrays
 		var waypoints:Array;
 		var enemies:Array;
@@ -34,8 +36,6 @@
 
 		public function PhatKids()
 		{
-			trace(" bankValue = " + bankValue.getValue());
-			trace(" lifePoints = " + lifePoints.getValue());
 			waypoints = new Array();
 			enemies = new Array();
 			bullets = new Array();
@@ -45,7 +45,6 @@
 			addEventListener(Event.ENTER_FRAME, updatePhatKids);
 			addEventListener(Event.ENTER_FRAME, enemyLoop);
 			addEventListener(Event.ENTER_FRAME, bulletLoop);
-
 			enemyTimer.start();
 			enemyTimer.addEventListener(TimerEvent.TIMER, enemyTimerTick);
 		}
