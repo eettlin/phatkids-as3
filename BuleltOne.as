@@ -6,8 +6,8 @@
 	public class BuleltOne extends MovieClip {
 		
 		
-		public function BuleltOne() {
-			// constructor code
+		public function BuleltOne(hp:Number) {
+			super(hp);
 		}
 	}
 	

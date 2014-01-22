@@ -6,8 +6,8 @@
 	public class BulletFour extends Bullet {
 		
 		
-		public function BulletFour() {
-			super();
+		public function BulletFour(hp:Number) {
+			super(hp);
 		}
 	}
 	

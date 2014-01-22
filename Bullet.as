@@ -8,12 +8,12 @@
 	public class Bullet extends MovieClip {
 		
 		
-		var speed:Number = 15;
+		var speed:Number = 10;
 		var startPosition:Point = new Point();
 		private var hitPoints:Number;
 		
-		public function Bullet() {
-			this.hitPoints = 100;
+		public function Bullet(hp:Number) {
+			this.hitPoints = hp;
 		}
 		
 		public function updateBullet():void

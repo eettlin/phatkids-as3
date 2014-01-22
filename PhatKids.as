@@ -131,19 +131,19 @@
 			var bullet:Bullet = null;
 			switch(bn){
 				case 1:
-				 bullet = new BulletOne(); 
+				 bullet = new BulletOne(20); 
 				 break;
 				case 2:
-				 bullet = new BulletTwo(); 
+				 bullet = new BulletTwo(40); 
 				 break;
 				case 3:
-				 bullet = new BulletThree(); 
+				 bullet = new BulletThree(80); 
 				 break;
 				case 4:
-				 bullet = new BulletFour(); 
+				 bullet = new BulletFour(160); 
 				 break;
 				default:
-				 bullet = new Bullet(); 
+				 bullet = new Bullet(20); 
 				 break;
 			
 			}
@@ -181,19 +181,19 @@
 				switch(randomEnemy)
 				{
 					case 1:
-						enemy = new EnemyOne(waypoints, 100, 50 );
+						enemy = new EnemyOne(waypoints, 600, 20 );
 					break;
 					
 					case 2:
-						enemy  = new EnemyTwo(waypoints, 150, 50);
+						enemy  = new EnemyTwo(waypoints, 750, 40);
 					break;
 					
 					case 3:
-						enemy  = new EnemyThree(waypoints, 200, 50);
+						enemy  = new EnemyThree(waypoints, 850, 80);
 					break;
 					
 					case 4:
-						enemy  = new EnemyFour(waypoints, 500, 50);
+						enemy  = new EnemyFour(waypoints, 1000, 110);
 					break;
 					
 					default:
