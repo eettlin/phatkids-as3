@@ -9,7 +9,7 @@
 	{
 		public var lifePoints:Number;
 		public var bankPoints:Number;
-		var speed:Number = 5;
+		var speed:Number = 3;
 		var waypoints:Array;
 		var currWP:Number = 0;
 		var distWP:Number = 0;

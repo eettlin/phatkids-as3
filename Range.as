@@ -6,19 +6,19 @@
 	
 	public class Range extends Sprite {
 		
-		var rangeRadius:int = 30;
+		var rangeRadius:int = 0;
 		var center:Point;
 		
 		public function Range(r:int) {
-			// constructor code
-			this.rangeRadius = r;
+
+			this.rangeRadius = r;  // default
 			this.width = 2*rangeRadius;
 			this.height = 2*rangeRadius;
-			this.alpha = .25;
+			this.alpha = .75;
 		}
 		
-		public function updateRadius(r:Number):void{
-			this.rangeRadius = r;
+		public function updateRadius(newRange:Number):void{
+			this.rangeRadius = newRange;
 			this.width = 2*rangeRadius;
 			this.height = 2*rangeRadius;
 		}

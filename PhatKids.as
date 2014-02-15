@@ -10,6 +10,7 @@
 	import flash.events.TimerEvent;
 	import fl.transitions.*;
   	import fl.transitions.easing.*;
+  	import flash.geom.Point;
 
 
 	public class PhatKids extends MovieClip
@@ -23,7 +24,7 @@
 		var enemyTimer:Timer = new Timer(2000,40);
 		var sendEnemy:Boolean = true;
 		var trt:Turret;
-		var range:Range = new Range(100);
+		var range:Range = new Range(100);  //default range 100
 
 		
 		var bankValue:PointBank = new PointBank(800);
@@ -81,11 +82,12 @@
 			for (var bi:int = 0; bi < bullets.length; bi++)
 			{
 				bullets[bi].updateBullet();
-
-				if (bullets[bi].x < 0 ||
-				   bullets[bi].x > 800||
-				   bullets[bi].y < 0||
-				   bullets[bi].y > 800)
+				
+				var bdx:Number = bullets[bi].x - (bullets[bi].getStartPosition()).x;
+				var bdy:Number = bullets[bi].y - (bullets[bi].getStartPosition()).y;
+				var bulletDistance:Number = Math.sqrt(bdx*bdx+bdy*bdy)
+				
+				if(bulletDistance > bullets[bi].getRange())
 				{
 					//remove bullet from parent
 					this.removeChild(bullets[bi]);
@@ -125,31 +127,31 @@
 
 
 
-		public function makeBullet(tx:int, ty:int, tr:int, bn:int):void //++++++++++++++++ input parameters
+		public function makeBullet(tx:int, ty:int, tRot:int, bn:int,tRange:Number):void //++++++++++++++++ input parameters
 		{
 			var bullet:Bullet = null;
 			switch(bn){
 				case 1:
-				 bullet = new BulletOne(20); 
+				 bullet = new BulletOne(70, new Point(tx,ty), tRange); 
 				 break;
 				case 2:
-				 bullet = new BulletTwo(40); 
+				 bullet = new BulletTwo(100, new Point(tx,ty), tRange); 
 				 break;
 				case 3:
-				 bullet = new BulletThree(80); 
+				 bullet = new BulletThree(120, new Point(tx,ty), tRange); 
 				 break;
 				case 4:
-				 bullet = new BulletFour(160); 
+				 bullet = new BulletFour(160, new Point(tx,ty), tRange); 
 				 break;
 				default:
-				 bullet = new Bullet(20); 
+				 bullet = new Bullet(20, new Point(tx,ty), 100); 
 				 break;
 			
 			}
 			
 			bullet.x = tx;
 			bullet.y = ty;
-			bullet.rotation = tr;
+			bullet.rotation = tRot;
 			bullet.mask = createPlayAreaMask();
 			bullets.push(bullet);
 			this.addChild(bullet);
@@ -206,16 +208,18 @@
 		{
 			bankValue.changeValue(-cost);  //  +++++++  Change Bank value
 			range.updateRadius(t.ts.range);
+			range.visible = true;
 			this.addChild(range);
+			
 			trt = t;
 			trt.x = mouseX;
 			trt.y = mouseY;
 			trt.startDrag();
 			trt.mask = createPlayAreaMask();
 			addChild(trt);
-			range.visible = true;
-			addEventListener(MouseEvent.MOUSE_UP, releaseTurret);
 			addEventListener(Event.ENTER_FRAME, setRanger );
+			addEventListener(MouseEvent.MOUSE_UP, releaseTurret);
+			
 		}
 
 		private function releaseTurret(me:MouseEvent):void

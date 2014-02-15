@@ -51,7 +51,7 @@
 			fireDelay--;  
 			if ((parent) != null && fireDelay < 0 && (getDistanceToEnemy(e[currEnemy])) <= ts.range) //addes third condition
 			{
-				(parent as MovieClip).makeBullet(x, y, rotation, ts.bulletType);
+				(parent as MovieClip).makeBullet(x, y, rotation, ts.bulletType, ts.range);
 				fireDelay = 24;
 			}
 			
